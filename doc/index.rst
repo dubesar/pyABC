@@ -1,6 +1,7 @@
 Welcome to pyABC's documentation!
 =================================
 
+
 .. image:: https://travis-ci.org/ICB-DCM/pyABC.svg?branch=master
    :target: https://travis-ci.org/ICB-DCM/pyABC
 .. image:: https://readthedocs.org/projects/pyabc/badge/?version=latest
@@ -14,12 +15,14 @@ Welcome to pyABC's documentation!
 .. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.3364560.svg
    :target: https://doi.org/10.5281/zenodo.3364560
 
-:Release: |version|
-:Source code: https://github.com/icb-dcm/pyabc
+
+Source code: https://github.com/icb-dcm/pyabc
+
 
 .. image:: logo/logo.png
    :alt: pyABC logo
    :align: center
+   :width: 30%
 
 pyABC is a framework for distributed, likelihood-free inference.
 That means, if you have a model and some data and want to know the posterior
@@ -45,49 +48,13 @@ If you use it in your work, you can cite the paper:
    :maxdepth: 2
    :caption: User's guide
 
-   what
-
-.. toctree::
-   :maxdepth: 2
-   
+   what   
    installation
-
-.. toctree::
-   :maxdepth: 2
-   
    examples
-
-.. toctree::
-   :maxdepth: 2
-
    sampler
-
-.. toctree::
-   :maxdepth: 2
-   
    sge
-
-.. toctree::
-   :maxdepth: 2
-   
    export_db
-
-.. toctree::
-   :maxdepth: 2
-   
    web_visualization
-
-
-.. toctree::
-   :maxdepth: 2
-   :caption: About
-   
-   releasenotes
-
-.. toctree::
-   :maxdepth: 2
-   
-   about
 
 
 .. toctree::
@@ -95,12 +62,15 @@ If you use it in your work, you can cite the paper:
    :caption: Developer's guide
    
    contribute
+   deploy
 
 
 .. toctree::
    :maxdepth: 2
+   :caption: About
    
-   deploy
+   releasenotes
+   about
 
 
 .. toctree::
