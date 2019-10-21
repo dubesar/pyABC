@@ -23,8 +23,7 @@ class Epsilon(ABC):
 
     def initialize(self,
                    t: int,
-                   get_weighted_distances: Callable[[], pd.DataFrame],
-                   distance_function: Distance):
+                   get_weighted_distances: Callable[[], pd.DataFrame]):
         """
         This method is called by the ABCSMC framework before the first usage
         of the epsilon and can be used to calibrate it to the statistics of the
@@ -40,9 +39,6 @@ class Epsilon(ABC):
 
         get_weighted_distances: Callable[[], pd.DataFrame]
             Returns on demand the distances for initializing the epsilon.
-
-        distance_function: Distance
-
         """
         pass
 

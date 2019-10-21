@@ -403,10 +403,10 @@ class ABCSMC:
         self.distance_function.initialize(
             t, get_initial_sum_stats, self.x_0)
         self.eps.initialize(
-            t, get_initial_weighted_distances, self.distance_function)
+            t, get_initial_weighted_distances)
         self.acceptor.initialize(
             t, get_initial_weighted_distances, self.max_nr_populations,
-            self.distance_function, self.x_0)
+            self.x_0)
 
     def _get_initial_population(self, t: int) -> (List[float], List[dict]):
         """
@@ -856,8 +856,7 @@ class ABCSMC:
 
             # update acceptor
             self.acceptor.update(
-                t + 1, population.get_weighted_distances(),
-                self.distance_function, acceptance_rate)
+                t + 1, population.get_weighted_distances(), acceptance_rate)
 
             # check early termination conditions
             if (current_eps <= minimum_epsilon

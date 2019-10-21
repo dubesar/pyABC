@@ -79,7 +79,6 @@ class Acceptor:
             t: int,
             get_weighted_distances: Callable[[], pd.DataFrame],
             max_nr_populations: int,
-            distance_function: Distance,
             x_0: dict):
         """
         Initialize. This method is called by the ABCSMC framework initially,
@@ -95,9 +94,6 @@ class Acceptor:
             Returns on demand the distances for initializing the acceptor.
         max_nr_populations: int
             Maximum number of populations in current run.
-        distance_function: Distance
-            Distance object. The acceptor should not modify it, but might
-            extract some meta information.
         x_0: dict
             The observed summary statistics.
         """
@@ -106,7 +102,6 @@ class Acceptor:
     def update(self,
                t: int,
                weighted_distances: pd.DataFrame,
-               distance_function: Distance,
                acceptance_rate: float):
         """
         Update the acceptance criterion.
@@ -118,8 +113,6 @@ class Acceptor:
             The timepoint to initialize the acceptor for.
         weighted_distances: Callable[[], pd.DataFrame]
             The current generation's weighted distances.
-        distance_function: Distance
-            Distance object.
         acceptance_rate: float
             The current generation's acceptance rate.
         """
