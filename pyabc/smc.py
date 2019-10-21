@@ -403,7 +403,7 @@ class ABCSMC:
         self.distance_function.initialize(
             t, get_initial_sum_stats, self.x_0)
         self.eps.initialize(
-            t, get_initial_weighted_distances)
+            t, get_initial_weighted_distances, self.distance_function)
         self.acceptor.initialize(
             t, get_initial_weighted_distances, self.max_nr_populations,
             self.distance_function, self.x_0)

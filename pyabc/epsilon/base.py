@@ -4,6 +4,8 @@ import json
 from abc import ABC, abstractmethod
 from typing import Callable
 
+from ..distance import Distance
+
 
 class Epsilon(ABC):
     """
@@ -21,7 +23,8 @@ class Epsilon(ABC):
 
     def initialize(self,
                    t: int,
-                   get_weighted_distances: Callable[[], pd.DataFrame]):
+                   get_weighted_distances: Callable[[], pd.DataFrame],
+                   distance_function: Distance):
         """
         This method is called by the ABCSMC framework before the first usage
         of the epsilon and can be used to calibrate it to the statistics of the
@@ -37,12 +40,16 @@ class Epsilon(ABC):
 
         get_weighted_distances: Callable[[], pd.DataFrame]
             Returns on demand the distances for initializing the epsilon.
+
+        distance_function: Distance
+
         """
         pass
 
     def update(self,
                t: int,
-               weighted_distances: pd.DataFrame):
+               weighted_distances: pd.DataFrame,
+               acceptance_rate: float):
         """
         Update epsilon value to be used as acceptance criterion for
         generation t.
