@@ -42,6 +42,11 @@ from .scale import (
     span,
     mean,
     median)
+from .kernel import (
+    StochasticKernel,
+    RET_SCALE_LIN,
+    RET_SCALE_LOG,
+)
 
 
 __all__ = [
@@ -77,4 +82,8 @@ __all__ = [
     "span",
     "mean",
     "median",
+    # kernel
+    "StochasticKernel",
+    "RET_SCALE_LIN",
+    "RET_SCALE_LOG",
 ]
