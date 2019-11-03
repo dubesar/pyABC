@@ -784,10 +784,14 @@ class ABCSMC:
         self.max_nr_populations = max_nr_populations
         self.min_acceptance_rate = min_acceptance_rate
 
-        # sample from prior to calibrate distance, epsilon, and acceptor
-        self._initialize_dist_eps_acc(self.history.max_t + 1)
-
+        # initial time
         t0 = self.history.max_t + 1
+
+        # calibrate distance, epsilon, and acceptor
+        self._initialize_dist_eps_acc(t0)
+        self._fit_transitions(t0)
+        self._adapt_population_size(t0)
+
         self.history.start_time = datetime.datetime.now()
         # not saved as attribute b/c Mapper of type
         # "ipython_cluster" is not pickleable
@@ -802,10 +806,6 @@ class ABCSMC:
             # get epsilon for generation t
             current_eps = self.eps(t)
             logger.info(f"t: {t}, eps: {current_eps}.")
-
-            # do some adaptations
-            self._fit_transitions(t)
-            self._adapt_population_size(t)
 
             # create simulate function
             simulate_one = self._create_simulate_function(t)
@@ -838,12 +838,19 @@ class ABCSMC:
             logger.info(f"Acceptance rate: {pop_size} / {nr_evaluations} = "
                         f"{acceptance_rate:.4e}.")
 
+            # update transition
+            self._fit_transitions(t + 1)
+
+            # update population size
+            self._adapt_population_size(t + 1)
+
             # update distance function
             partial_sum_stats = sample.first_n_sum_stats(
                 self.max_number_particles_for_distance_update)
             df_updated = self.distance_function.update(
                 t + 1, partial_sum_stats)
 
+            weights = 
             # compute distances with the new distance measure
             if df_updated:
                 def distance_to_ground_truth(x, par):
